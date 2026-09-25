@@ -1,0 +1,30 @@
+name: RedirectAtlas CSV Check
+description: Check a redirect map for loops, conflicts and chains locally on your runner. No network or telemetry.
+author: RTG Product Labs
+branding:
+  icon: corner-up-right
+  color: green
+inputs:
+  csv:
+    description: Path to a UTF-8 redirect CSV inside the checked-out workspace.
+    required: true
+  base_url:
+    description: Source site used to resolve relative paths. Set this to your actual source origin.
+    default: https://example.invalid
+  fail_on:
+    description: errors (default), review (errors or warnings), or never (invalid input still fails).
+    default: errors
+  report:
+    description: Optional new CSV report path inside the workspace. Contains source URLs. Existing files are never overwritten.
+outputs:
+  rows:
+    description: Number of redirect rows.
+  errors:
+    description: Number of rows with blocking structural findings.
+  review:
+    description: Number of rows with warnings and no blocking finding.
+  clear:
+    description: Number of rows without detected structural findings.
+runs:
+  using: node24
+  main: action.mjs

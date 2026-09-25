@@ -1,0 +1,55 @@
+name: Test checker and action
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Run adapter and engine tests
+        run: node --test test.mjs
+      - name: Clean map passes
+        id: clean
+        uses: ./
+        with:
+          csv: examples/clean.csv
+          base_url: https://example.com
+      - name: Loop fails
+        id: loop
+        continue-on-error: true
+        uses: ./
+        with:
+          csv: examples/loop.csv
+      - name: Review threshold fails on chains
+        id: review
+        continue-on-error: true
+        uses: ./
+        with:
+          csv: examples/review.csv
+          fail_on: review
+      - name: Invalid configuration fails
+        id: invalid
+        continue-on-error: true
+        uses: ./
+        with:
+          csv: examples/missing.csv
+      - name: Verify outputs and outcomes
+        env:
+          CLEAN_ROWS: ${{ steps.clean.outputs.rows }}
+          CLEAN_ERRORS: ${{ steps.clean.outputs.errors }}
+          LOOP_ERRORS: ${{ steps.loop.outputs.errors }}
+          LOOP_OUTCOME: ${{ steps.loop.outcome }}
+          REVIEW_OUTCOME: ${{ steps.review.outcome }}
+          INVALID_OUTCOME: ${{ steps.invalid.outcome }}
+        run: |
+          test "$CLEAN_ROWS" = 2
+          test "$CLEAN_ERRORS" = 0
+          test "$LOOP_ERRORS" = 2
+          test "$LOOP_OUTCOME" = failure
+          test "$REVIEW_OUTCOME" = failure
+          test "$INVALID_OUTCOME" = failure
