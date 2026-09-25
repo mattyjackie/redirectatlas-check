@@ -64,6 +64,12 @@ Source,Target
 
 Shopify's `Redirect from,Redirect to` headers also work. Relative paths start with `/`; absolute URLs start with `http://` or `https://`. Quoted CSV fields, BOM and CRLF are supported. Paths preserve case, query strings and trailing slashes.
 
+## Worked Shopify migration example
+
+[Check a Shopify redirect CSV before import](https://redirectatlas.com/shopify-redirect-csv?utm_source=github&utm_medium=referral&utm_campaign=shopify_csv&utm_content=readme) with our original six-row example and corrected four-row map. Follow the chain, resolve conflicting destinations and remove a self-redirect, then try your own file in the free browser audit. No account or Shopify installation is needed for the file check.
+
+These are structural checks. They do not certify Shopify import eligibility or live redirects, and the findings export is not an import file. For maps larger than the browser's 1,000-row limit, use this local checker up to its documented 10,000-row limit.
+
 ## Findings and exit codes
 
 | Finding level | Detected cases |
