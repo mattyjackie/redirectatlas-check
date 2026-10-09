@@ -70,9 +70,9 @@ Shopify's `Redirect from,Redirect to` headers also work. Relative paths start wi
 
 These are structural checks. They do not certify Shopify import eligibility or live redirects, and the findings export is not an import file. For maps larger than the browser's 1,000-row limit, use this local checker up to its documented 10,000-row limit.
 
-## Vercel bulk-redirect CSV field names
+## Agency migration example
 
-Use the current Vercel bulk schema when preparing an import. Our [worked statusCode CSV guide](https://redirectatlas.com/vercel-redirect-csv) includes original correct/wrong-header examples and a staged/live review checklist. The generic checker audits source/destination structure; it does not validate provider status fields, upload a file to Vercel or certify a live redirect.
+[Review a fictional Wix-to-Shopify map](docs/wix-to-shopify-example.md), resolve conflicting destinations and a loop, then compare the executable corrected CSV.
 
 ## Findings and exit codes
 

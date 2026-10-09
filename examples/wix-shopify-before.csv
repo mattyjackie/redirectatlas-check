@@ -1,0 +1,7 @@
+Source,Target
+/product-page/linen-shirt,/products/linen-shirt
+/product-page/linen-shirt,/collections/shirts
+/post/care-guide,/journal/care-guide
+/journal/care-guide,/post/care-guide
+/product-page/old-tote,/product-page/canvas-tote
+/product-page/canvas-tote,/products/canvas-tote
