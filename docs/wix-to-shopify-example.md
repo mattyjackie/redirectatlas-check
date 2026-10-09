@@ -4,7 +4,7 @@ An agency moving a shop needs to decide where each old page belongs before insta
 
 ## Run the example
 
-Clone this repository and use Node.js 20 or later:
+Clone this repository. Use Node.js 20 or later to run both examples:
 
 ```sh
 node cli.mjs --file examples/wix-shopify-before.csv --base https://example.com
@@ -15,11 +15,17 @@ The first command exits with code 1: six rows, four errors, one review and one c
 
 ## Decide the destination, then fix the map
 
-| Old path | Problem | Decision in this fictional shop |
-| --- | --- | --- |
-| `/product-page/linen-shirt` | Two rows send the same source to different destinations. | Keep the product destination `/products/linen-shirt`; remove the competing collection rule. |
-| `/post/care-guide` and `/journal/care-guide` | They redirect to each other, creating a loop. | Both old paths lead directly to the corresponding new article `/blogs/journal/care-guide`. |
-| `/product-page/old-tote` | It redirects through `/product-page/canvas-tote`. | Point both old product paths directly to `/products/canvas-tote`. |
+### Choose one product destination
+
+Two rows send `/product-page/linen-shirt` to different pages. In this fictional shop, keep `/products/linen-shirt` and remove the competing collection rule.
+
+### Break the article loop
+
+The old paths `/post/care-guide` and `/journal/care-guide` redirect to each other. Send both directly to the corresponding new article `/blogs/journal/care-guide`.
+
+### Remove the intermediate hop
+
+The old tote path redirects through another old product path. Point both `/product-page/old-tote` and `/product-page/canvas-tote` directly to `/products/canvas-tote`.
 
 The corrected CSV uses Shopify's `Redirect from,Redirect to` headers. Confirm that the intended products and article exist in your own store. A conflict needs an editorial decision; a checker cannot decide which page best serves the old visitor.
 
