@@ -72,7 +72,7 @@ These are structural checks. They do not certify Shopify import eligibility or l
 
 ## Agency migration example
 
-[Review a fictional Wix-to-Shopify map](docs/wix-to-shopify-example.md), resolve conflicting destinations and a loop, then compare the executable corrected CSV.
+[Check an agency handover](docs/wix-to-shopify-example.md) with copy-pastable clone commands and fictional Wix-to-Shopify fixtures. Compare the failing map with the corrected map, then add the pull-request check to a private client repository before handing over the CSV.
 
 ## Findings and exit codes
 

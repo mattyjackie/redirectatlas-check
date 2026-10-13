@@ -2,11 +2,13 @@
 
 An agency moving a shop needs to decide where each old page belongs before installing redirects. This fictional map contains a conflicting product destination, a two-page loop and an extra redirect hop. No customer URLs or files are used.
 
-## Run the example
+## Check an agency handover
 
-Clone this repository. Use Node.js 20 or later to run both examples:
+Before sending a migration map to the person importing it, compare the broken and corrected fixtures. Use Node.js 20 or later. These commands clone the checker and run only fictional URLs:
 
 ```sh
+git clone https://github.com/mattyjackie/redirectatlas-check.git
+cd redirectatlas-check
 node cli.mjs --file examples/wix-shopify-before.csv --base https://example.com
 node cli.mjs --file examples/wix-shopify-corrected.csv --base https://example.com
 ```
@@ -28,6 +30,18 @@ The old paths `/post/care-guide` and `/journal/care-guide` redirect to each othe
 The old tote path redirects through another old product path. Point both `/product-page/old-tote` and `/product-page/canvas-tote` directly to `/products/canvas-tote`.
 
 The corrected CSV uses Shopify's `Redirect from,Redirect to` headers. Confirm that the intended products and article exist in your own store. A conflict needs an editorial decision; a checker cannot decide which page best serves the old visitor.
+
+## Block a broken map in the client repository
+
+Copy the corrected fixture to `redirects.csv` in a private client repository, then use the workflow in the [README](../README.md#check-every-pull-request). Keep `fail_on: errors` while reviewing warnings manually; choose `review` when every warning must be resolved before the handover. Set `base_url` to the source site's origin.
+
+To review a local client file without changing it, run this from the checker folder. Replace the file path and origin with your own values:
+
+```sh
+node cli.mjs --file /path/to/redirects.csv --base https://source.example.com
+```
+
+The checker reports findings and exits; it does not edit or import the map. Resolve competing destinations with the client, rerun the same check, then hand over the reviewed CSV with a separate plan to test redirects after deployment. Avoid putting private URLs in public issues or reports.
 
 ## Try your own map
 
