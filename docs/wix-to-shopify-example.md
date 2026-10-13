@@ -13,7 +13,7 @@ node cli.mjs --file examples/wix-shopify-before.csv --base https://example.com
 node cli.mjs --file examples/wix-shopify-corrected.csv --base https://example.com
 ```
 
-The first command exits with code 1: six rows, four errors, one review and one clear row. Its finding counts are two conflicting-source findings, two loop findings and three chain findings. A row can have more than one finding; finding counts are not row totals. The corrected command exits with code 0: five rows, zero errors, zero review findings and five clear rows.
+The first checker command exits with code 1: six rows, four errors, one review and one clear row. Its finding counts are two conflicting-source findings, two loop findings and three chain findings. A row can have more than one finding; finding counts are not row totals. The corrected command exits with code 0: five rows, zero errors, zero review findings and five clear rows.
 
 ## Decide the destination, then fix the map
 
@@ -31,7 +31,7 @@ The old tote path redirects through another old product path. Point both `/produ
 
 The corrected CSV uses Shopify's `Redirect from,Redirect to` headers. Confirm that the intended products and article exist in your own store. A conflict needs an editorial decision; a checker cannot decide which page best serves the old visitor.
 
-## Block a broken map in the client repository
+## Check client pull requests
 
 Copy the corrected fixture to `redirects.csv` in a private client repository, then use the workflow in the [README](../README.md#check-every-pull-request). Keep `fail_on: errors` while reviewing warnings manually; choose `review` when every warning must be resolved before the handover. Set `base_url` to the source site's origin.
 
