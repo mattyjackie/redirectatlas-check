@@ -1,10 +1,10 @@
 # Remove an extra hop from a domain-move map
 
-A domain move can accidentally send an old page through another old path before reaching the new site. This fictional example compares that chain with a direct destination. It uses reserved example domains and makes no requests to them.
+A domain move can accidentally send an old page through another old path before reaching the new site. This fictional example compares that chain with a direct destination using reserved example domains. No URLs are fetched.
 
 ## Run the comparison
 
-Use Node.js 20 or later. Run each checker command separately: a findings exit code is expected and must not prevent the second command from running.
+Use Node.js 20 or later. Clone the checker and run both fixtures:
 
 ```sh
 git clone https://github.com/mattyjackie/redirectatlas-check.git
