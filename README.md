@@ -76,6 +76,8 @@ These are structural checks. They do not certify Shopify import eligibility or l
 
 ## Findings and exit codes
 
+For a domain move, [compare an intermediate hop with a direct destination](docs/domain-move-example.md). The fictional fixtures show why intentional cross-origin review findings and actual server redirects need separate decisions.
+
 | Finding level | Detected cases |
 | --- | --- |
 | Error | Invalid or missing URLs, self-redirects, loops, conflicting source destinations, chains reaching ambiguous rules, chains exceeding 100 hops |

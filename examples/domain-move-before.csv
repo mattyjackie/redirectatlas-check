@@ -1,0 +1,4 @@
+Source,Target
+/services,/new-services
+/new-services,https://new.example.com/services/
+/contact,https://new.example.com/contact/
